@@ -61,4 +61,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const revealElements = document.querySelectorAll('.reveal');
     revealElements.forEach(el => revealObserver.observe(el));
+
+    // Smart Navbar (Hide on Scroll Down, Show on Scroll Up)
+    let lastScrollTop = 0;
+    const navbar = document.querySelector('.navbar');
+    const scrollDelta = 5;
+
+    window.addEventListener('scroll', () => {
+        let st = window.pageYOffset || document.documentElement.scrollTop;
+
+        // Make sure scroll is more than delta
+        if (Math.abs(lastScrollTop - st) <= scrollDelta) return;
+
+        // If scroll down and past navbar, add class .nav-up
+        if (st > lastScrollTop && st > navbar.offsetHeight) {
+            navbar.classList.add('nav-up');
+        } else {
+            // Scroll Up
+            if (st + window.innerHeight < document.documentElement.scrollHeight) {
+                navbar.classList.remove('nav-up');
+            }
+        }
+        lastScrollTop = st;
+    });
 });

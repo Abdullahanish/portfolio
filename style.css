@@ -97,7 +97,11 @@ section {
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--glass-border);
     padding: 1rem 0;
-    transition: var(--transition-speed);
+    transition: transform var(--transition-speed), background var(--transition-speed);
+}
+
+.navbar.nav-up {
+    transform: translateY(-100%);
 }
 
 .nav-content {
