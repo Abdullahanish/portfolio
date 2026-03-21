@@ -46,6 +46,15 @@ document.addEventListener('DOMContentLoaded', () => {
         burger.classList.toggle('toggle');
     });
 
+    // Close menu when any link inside is clicked
+    nav.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+            nav.classList.remove('nav-active');
+            burger.classList.remove('toggle');
+            navLinks.forEach(l => l.style.animation = '');
+        }
+    });
+
     // Intersection Observer for Reveal Animations
     const observerOptions = {
         threshold: 0.15
